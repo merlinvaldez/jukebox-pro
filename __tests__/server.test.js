@@ -30,7 +30,7 @@ describe("POST /users/register", () => {
     const {
       rows: [user],
     } = await db.query(
-      "SELECT * FROM users WHERE username = 'eFa7xWeIF5A3cpF5JrM1UzsI'",
+      "SELECT * FROM users WHERE username = 'eFa7xWeIF5A3cpF5JrM1UzsI'"
     );
     expect(user).toBeDefined();
     expect(user).toHaveProperty("password");
@@ -103,7 +103,7 @@ describe("Protected routes", () => {
         .set("Authorization", `Bearer ${token}`);
       expect(response.status).toBe(200);
       expect(response.body).toEqual(
-        expect.arrayContaining([expect.objectContaining(newPlaylist)]),
+        expect.arrayContaining([expect.objectContaining(newPlaylist)])
       );
     });
   });
@@ -175,12 +175,13 @@ describe("Protected routes", () => {
     });
 
     it("sends playlists owned by the user that contain the track", async () => {
+      console.log(`Test token: ${token}`);
       const response = await request(app)
         .get("/tracks/1/playlists")
         .set("Authorization", `Bearer ${token}`);
       expect(response.status).toBe(200);
       expect(response.body).toEqual(
-        expect.arrayContaining([expect.objectContaining(newPlaylist)]),
+        expect.arrayContaining([expect.objectContaining(newPlaylist)])
       );
     });
   });

@@ -9,5 +9,6 @@ export function createToken(payload) {
 
 /** Extracts the payload from a token */
 export function verifyToken(token) {
+  console.log(token);
   return jwt.verify(token, SECRET);
 }

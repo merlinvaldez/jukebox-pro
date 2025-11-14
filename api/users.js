@@ -13,6 +13,7 @@ usersRouter.post(
     const { username, password } = req.body;
     const user = await createUser(username, password);
     const token = createToken({ id: user.id });
+    console.log(`token: ${token}`);
     res.status(201).send(token);
   }
 );
@@ -25,6 +26,7 @@ usersRouter.post(
     const user = await getUserByUsernameAndPassword(username, password);
     if (!user) return res.status(400).send("Invalid usernme or password.");
     const token = createToken({ id: user.id });
+
     res.send(token);
   }
 );

@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS users;
+
 DROP TABLE IF EXISTS playlists_tracks;
 DROP TABLE IF EXISTS playlists;
 DROP TABLE IF EXISTS tracks;
-
+DROP TABLE IF EXISTS users;
 
  CREATE TABLE users (
   id serial PRIMARY KEY,

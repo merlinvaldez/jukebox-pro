@@ -11,9 +11,9 @@ export async function createUser(username, password) {
   `;
   const hashedPassword = await bcrypt.hash(password, 10);
   const {
-    rows: [users],
+    rows: [user],
   } = await db.query(sql, [username, hashedPassword]);
-  return users;
+  return user;
 }
 
 export async function getUserByUsernameAndPassword(username, password) {
@@ -23,7 +23,7 @@ export async function getUserByUsernameAndPassword(username, password) {
     WHERE username=$1`;
   const {
     rows: [user],
-  } = await db.query(sql, [user]);
+  } = await db.query(sql, [username]);
   if (!user) return null;
   const isValid = await bcrypt.compare(password, user.password);
   if (!isValid) return null;
