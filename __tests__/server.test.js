@@ -143,6 +143,7 @@ describe("Protected routes", () => {
         .post(newPlaylistUrl)
         .send({ trackId: 1 })
         .set("Authorization", `Bearer ${token}`);
+      console.log(` PLAYLIST URL ${newPlaylistUrl}`);
       expect(response.status).toBe(201);
     });
   });

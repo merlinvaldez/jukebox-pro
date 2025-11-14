@@ -11,10 +11,10 @@ await db.end();
 console.log("🌱 Database seeded.");
 
 async function seed() {
+  let owner_id;
   for (let i = 1; i <= 5; i++) {
     await createUser(`user${i}`, "merlin");
-    const owner_id = i;
-    return owner_id;
+    owner_id = i;
   }
   for (let i = 1; i <= 20; i++) {
     await createPlaylist(

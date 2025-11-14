@@ -26,9 +26,13 @@ router.post("/", requireBody(["name", "description"]), async (req, res) => {
 
 router.param("id", async (req, res, next, id) => {
   const playlist = await getPlaylistById(id);
+  console.log(
+    `playlist {${JSON.stringify(playlist)} user ${JSON.stringify(req.user)}`
+  );
+
   if (!playlist) return res.status(404).send("Playlist not found.");
 
-  if (playlist.user_id !== req.user.id)
+  if (playlist.owner_id !== req.user.id)
     return res
       .status(403)
       .send("You do not have permission to access this playlist.");
